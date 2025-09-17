@@ -17,7 +17,7 @@ void Camera::Update(sf::Vector2u windowSize)
 
 void Camera::Follow(Entity& player, float deltatime)
 {
-    sf::Vector2f target = player.GetPos();
+    sf::Vector2f target = player.GetSprite().getPosition();
 
     currentCenter += (target - currentCenter) * followSpeed * deltatime;
     view.setCenter(currentCenter);
