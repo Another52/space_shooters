@@ -12,11 +12,15 @@ void Camera::Update(sf::Vector2u windowSize)
 
     view.setSize(size);
     view.setCenter({ 0.f, 0.f });
+    currentCenter = sf::Vector2f(0.f, 0.f);
 }
 
-void Camera::Follow(Entity& player)
+void Camera::Follow(Entity& player, float deltatime)
 {
-    view.setCenter(player.GetPos());
+    sf::Vector2f target = player.GetPos();
+
+    currentCenter += (target - currentCenter) * followSpeed * deltatime;
+    view.setCenter(currentCenter);
 }
 
 const sf::View& Camera::GetView() const

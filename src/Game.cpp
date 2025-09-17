@@ -4,7 +4,7 @@
 Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
-	camera(500.f),
+	camera(300.f),
     player(texManager)
 {
 	window.setFramerateLimit(60);
@@ -42,8 +42,12 @@ void Game::Update()
     //calculate deltatime
 	deltatime = clock.restart().asSeconds();
     pollEvents();
+
+    //Update entities
     player.Update(deltatime);
-    camera.Follow(player);
+
+    //Update Camera
+    camera.Follow(player, deltatime);
     window.setView(camera.GetView());
 }
 
