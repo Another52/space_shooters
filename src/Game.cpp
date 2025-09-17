@@ -5,10 +5,11 @@ Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
 	camera(500.f),
-    sprite(texManager.GetTexture("background1.png"))
+    player(texManager)
 {
 	window.setFramerateLimit(60);
-	window.setView(camera.GetView(windowSize));
+    camera.Update(windowSize);
+    window.setView(camera.GetView());
 }
 
 void Game::Run()
@@ -30,7 +31,8 @@ void Game::pollEvents()
         }
         if (const auto* resized = event->getIf<sf::Event::Resized>())
         {
-            window.setView(camera.GetView(window.getSize()));
+            camera.Update(windowSize);
+            window.setView(camera.GetView());
         }
     }
 }
@@ -40,12 +42,14 @@ void Game::Update()
     //calculate deltatime
 	deltatime = clock.restart().asSeconds();
     pollEvents();
-
+    player.Update(deltatime);
+    camera.Follow(player);
+    window.setView(camera.GetView());
 }
 
 void  Game::Render()
 {
 	window.clear(sf::Color(155, 155, 155));
-    window.draw(sprite);
+    player.Draw(window);
     window.display();
 }
