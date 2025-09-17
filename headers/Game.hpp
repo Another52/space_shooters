@@ -3,7 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include "Camera.hpp"
 #include "TextureManager.hpp"
-#include "Entity.hpp"
+#include "Player.hpp"
 #include <string>
 #include <vector>
 
@@ -27,5 +27,5 @@ private:
 	//Game entities and what not
 private:
 	TextureManager texManager;
-	Entity player;
+	Player player;
 };

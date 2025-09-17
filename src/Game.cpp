@@ -5,7 +5,7 @@ Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
 	camera(300.f),
-    player(texManager)
+    player(texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
 {
 	window.setFramerateLimit(60);
     camera.Update(windowSize);
