@@ -1,31 +1,10 @@
 #include "Entity.hpp"
 
-Entity::Entity(TextureManager& texManager)
+Entity::Entity(TextureManager& texManager, const std::string& filename, sf::IntRect& rectangle)
 	:
-	sprite(texManager.GetTexture("spaceShip\\stitchedFiles\\spaceships_c.png"))
+	sprite(texManager.GetTexture(filename))
 {
-	sprite.setTextureRect(sf::IntRect({ 0, 0 }, { 16, 16 }));
-}
-
-void Entity::Update(float dt)
-{
-	//Keyboard Movement
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-	{
-		sprite.move(sf::Vector2f(0.f, -1.f) * speed * dt);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-	{
-		sprite.move(sf::Vector2f(0.f, 1.f) * speed * dt);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
-	{
-		sprite.move(sf::Vector2f(-1.f, 0.f) * speed * dt);
-	}
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-	{
-		sprite.move(sf::Vector2f(1.f, 0.f) * speed * dt);
-	}
+	sprite.setTextureRect(rectangle);
 }
 
 void Entity::Draw(sf::RenderWindow& window) const
