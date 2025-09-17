@@ -4,11 +4,11 @@
 Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
-	camera(500.f)
+	camera(500.f),
+    sprite(texManager.GetTexture("background1.png"))
 {
-	//window.setFramerateLimit(1000);
+	window.setFramerateLimit(60);
 	window.setView(camera.GetView(windowSize));
-    texManager.GetTexture("background1.png");
 }
 
 void Game::Run()
@@ -39,12 +39,13 @@ void Game::Update()
 {
     //calculate deltatime
 	deltatime = clock.restart().asSeconds();
-
+    pollEvents();
 
 }
 
 void  Game::Render()
 {
 	window.clear(sf::Color(155, 155, 155));
-    
+    window.draw(sprite);
+    window.display();
 }

@@ -26,4 +26,5 @@ private:
 	//Game entities and what not
 private:
 	TextureManager texManager;
+	sf::Sprite sprite;
 };
