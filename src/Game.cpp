@@ -4,8 +4,9 @@
 Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
-	camera(300.f),
-    player(texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
+	camera(230.f),
+    player(texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 })),
+    bg(texManager, "background1.png")
 {
 	window.setFramerateLimit(60);
     camera.Update(windowSize);
@@ -54,6 +55,7 @@ void Game::Update()
 void  Game::Render()
 {
 	window.clear(sf::Color(155, 155, 155));
+    bg.Draw(window);
     player.Draw(window);
     window.display();
 }

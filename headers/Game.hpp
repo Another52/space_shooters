@@ -4,6 +4,7 @@
 #include "Camera.hpp"
 #include "TextureManager.hpp"
 #include "Player.hpp"
+#include "Background.hpp"
 #include <string>
 #include <vector>
 
@@ -27,5 +28,6 @@ private:
 	//Game entities and what not
 private:
 	TextureManager texManager;
+	Background bg;
 	Player player;
 };
