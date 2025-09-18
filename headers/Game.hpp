@@ -5,6 +5,7 @@
 #include "TextureManager.hpp"
 #include "Player.hpp"
 #include "Background.hpp"
+#include "Bullet.hpp"
 #include <string>
 #include <vector>
 
@@ -30,4 +31,5 @@ private:
 	TextureManager texManager;
 	Background bg;
 	Player player;
+	std::vector<Bullet> bullets;
 };
