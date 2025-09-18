@@ -9,8 +9,9 @@ Bullet::Bullet(const sf::Sprite& obj, const sf::RenderWindow& window,
 	sprite.setOrigin(sprite.getLocalBounds().getCenter());
 	sprite.setPosition(obj.getPosition());
 	sprite.setRotation(obj.getRotation());
-	std::cout << obj.getRotation().asDegrees() << std::endl;
-	dir = static_cast<sf::Vector2f>(window.mapPixelToCoords(sf::Mouse::getPosition(window))).normalized();
+
+	auto mousePos = static_cast<sf::Vector2f>(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
+	dir = (mousePos - obj.getPosition()).normalized();
 }
 
 void Bullet::Update(float deltatime)
