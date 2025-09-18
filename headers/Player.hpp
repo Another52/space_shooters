@@ -5,7 +5,7 @@
 class Player : public Entity
 {
 public:
-	using Entity::Entity;
+	Player(const sf::RenderWindow& window, TextureManager& texManager, const std::string& filename, const sf::IntRect& rect);
 	void Update(float dt);
 private:
 

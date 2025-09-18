@@ -1,8 +1,10 @@
 #include "Entity.hpp"
 
-Entity::Entity(TextureManager& texManager, const std::string& filename, sf::IntRect& rectangle)
+Entity::Entity(const sf::RenderWindow& window, TextureManager& texManager,
+			   const std::string& filename, const sf::IntRect& rectangle)
 	:
-	sprite(texManager.GetTexture(filename))
+	sprite(texManager.GetTexture(filename)),
+	window(window)
 {
 	sprite.setTextureRect(rectangle);
 }

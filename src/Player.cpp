@@ -1,7 +1,21 @@
 #include "Player.hpp"
 
+Player::Player(const sf::RenderWindow& window, TextureManager& texManager,
+			   const std::string& filename, const sf::IntRect& rect)
+	:
+	Entity(window, texManager, filename, rect)
+{
+	sprite.setOrigin(sprite.getLocalBounds().getCenter());
+}
+
 void Player::Update(float dt)
 {
+	//LookAt
+	sf::Vector2f mouse_pos = window.mapPixelToCoords(sf::Mouse::getPosition(window));
+	sf::Vector2f dir = (mouse_pos - sprite.getPosition()).normalized();
+	sprite.setRotation(sf::radians(std::atan2(dir.y, dir.x) - 80));
+
+
 	//Keyboard Movement
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 	{
