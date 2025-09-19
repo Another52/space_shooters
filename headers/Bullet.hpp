@@ -9,16 +9,10 @@ public:
 	Bullet(const sf::Sprite& obj, const sf::RenderWindow& window,
 		   TextureManager& texManager, const std::string& filename, sf::IntRect& rectangle);
 	void Update(float deltatime);
-public:
-	bool dead = false;
+
 private:
 	sf::Vector2f dir;
 	float speed = 100.f;
 	float lifetime{ 2.f };
 	float spawnDuration{ 0.f };
-};
-
-struct BulletManager
-{
-	std::vector<Bullet> bullets;
 };
