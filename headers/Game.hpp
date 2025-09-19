@@ -6,6 +6,7 @@
 #include "Player.hpp"
 #include "Background.hpp"
 #include "Bullet.hpp"
+#include "Enemy.hpp"
 #include <string>
 #include <vector>
 
@@ -25,11 +26,11 @@ private:
 	std::string windowName{ "Game" };
 	sf::RenderWindow window{};
 	Camera camera;
-
 	//Game entities and what not
 private:
 	TextureManager texManager;
 	Background bg;
 	Player player;
 	std::vector<std::unique_ptr<Bullet>> playerbullets;
+	Enemy enemy;
 };

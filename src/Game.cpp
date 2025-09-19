@@ -4,10 +4,10 @@
 Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
-	camera(230.f),
-    player(window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 })),
-    bg(texManager, "background1.png")
-    //bullet(player.GetSprite(), texManager, "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({1, 0}, {2, 4}))
+	camera(230.f, window),
+    player(window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 16 }, { 16, 16 })),
+    bg(texManager, "background1.png"),
+    enemy(player.GetSprite(), window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({0, 0}, {16, 16}))
 {
 	window.setFramerateLimit(60);
     camera.Update(windowSize);
@@ -71,7 +71,7 @@ void Game::Update()
         std::remove_if(playerbullets.begin(), playerbullets.end(),
                        [](const std::unique_ptr<Bullet>& b) { return b->IsDead(); }),
         playerbullets.end());
-
+    enemy.Update(deltatime);
     //Update Camera
     camera.Follow(player, deltatime);
     window.setView(camera.GetView());
@@ -86,5 +86,6 @@ void  Game::Render()
     {
         bullet->Draw(window);
     }
+    enemy.Draw(window);
     window.display();
 }
