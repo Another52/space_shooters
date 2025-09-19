@@ -12,9 +12,11 @@ public:
 	virtual void Update(float dt) = 0;
 	void Draw(sf::RenderWindow& window) const;
 	const sf::Sprite& GetSprite() const { return sprite; }
+	bool IsDead() const { return dead; }
 	bool Collision(Entity& other);
 protected:
 	sf::Sprite sprite;
 	float speed{100.f};
+	bool dead{ false };
 	const sf::RenderWindow& window;
 };
