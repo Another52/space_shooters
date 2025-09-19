@@ -6,7 +6,6 @@ Bullet::Bullet(const sf::Sprite& obj, const sf::RenderWindow& window,
 	:
 	Entity(window, texManager, filename, rectangle)
 {
-	sprite.setOrigin(sprite.getLocalBounds().getCenter());
 	sprite.setPosition(obj.getPosition());
 	sprite.setRotation(obj.getRotation());
 

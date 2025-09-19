@@ -7,6 +7,7 @@ Entity::Entity(const sf::RenderWindow& window, TextureManager& texManager,
 	window(window)
 {
 	sprite.setTextureRect(rectangle);
+	sprite.setOrigin(sprite.getLocalBounds().getCenter());
 }
 
 void Entity::Draw(sf::RenderWindow& window) const

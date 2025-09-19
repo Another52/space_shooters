@@ -5,7 +5,6 @@ Player::Player(const sf::RenderWindow& window, TextureManager& texManager,
 	:
 	Entity(window, texManager, filename, rect)
 {
-	sprite.setOrigin(sprite.getLocalBounds().getCenter());
 }
 
 void Player::Update(float dt)
