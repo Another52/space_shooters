@@ -16,4 +16,5 @@ private:
 	float speed = 80.f;
 	float spawnDuration{ 0.f };
 	sf::Vector2f currentDir;
+	int health{ 10 };
 };
