@@ -42,8 +42,12 @@ void Game::pollEvents()
         {
             if (mouseButtonPressed->button == sf::Mouse::Button::Left)
             {
-                bullets.emplace_back(player.GetSprite(), window, texManager,
-                                     "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }));
+                /*playerbullets.emplace_back(player.GetSprite(), window, texManager,
+                                     "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }));*/
+                playerbullets.push_back(std::make_unique<Bullet>(
+                    player.GetSprite(), window, texManager,
+                    "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }))
+                );
             }
         }
     }
@@ -58,10 +62,15 @@ void Game::Update()
     //Update entities
     player.Update(deltatime);
 
-    for(auto& bullet : bullets)
+    for(auto& bullet : playerbullets)
     {
-        bullet.Update(deltatime);
+        bullet->Update(deltatime);
     }
+
+    playerbullets.erase(
+        std::remove_if(playerbullets.begin(), playerbullets.end(),
+                       [](const std::unique_ptr<Bullet>& b) { return b->IsDead(); }),
+        playerbullets.end());
 
     //Update Camera
     camera.Follow(player, deltatime);
@@ -73,9 +82,9 @@ void  Game::Render()
 	window.clear(sf::Color(155, 155, 155));
     bg.Draw(window);
     player.Draw(window);
-    for (auto& bullet : bullets)
+    for (auto& bullet : playerbullets)
     {
-        bullet.Draw(window);
+        bullet->Draw(window);
     }
     window.display();
 }

@@ -31,5 +31,5 @@ private:
 	TextureManager texManager;
 	Background bg;
 	Player player;
-	std::vector<Bullet> bullets;
+	std::vector<std::unique_ptr<Bullet>> playerbullets;
 };
