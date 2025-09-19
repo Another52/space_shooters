@@ -1,4 +1,12 @@
 #include "Camera.hpp"
+#include <iostream>
+
+Camera::Camera(float zoomlevel, sf::RenderWindow& window)
+    : zoomLevel(zoomlevel)
+{
+    Update(window.getSize());
+    window.setView(view);
+}
 
 void Camera::Update(sf::Vector2u windowSize)
 {

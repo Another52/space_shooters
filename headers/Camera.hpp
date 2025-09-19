@@ -6,7 +6,7 @@
 class Camera
 {
 public:
-	Camera(float zoomlevel) : zoomLevel(zoomlevel) {}
+	Camera(float zoomlevel, sf::RenderWindow& window);
 	
 	void Update(sf::Vector2u windowSize);
 	void Follow(Entity& player, float deltatime);
