@@ -17,6 +17,8 @@ public:
 	virtual void TakeDamage(int damage) { health -= damage; }
 	const sf::Sprite& GetSprite() const { return sprite; }
 	bool IsDead() const { return dead; }
+public:
+	bool active{true};
 protected:
 	sf::Sprite sprite;
 	const sf::RenderWindow& window;
