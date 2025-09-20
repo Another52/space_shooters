@@ -88,7 +88,7 @@ void Game::Update()
         enemies.Collide(playerbullets);
 
         //Update Camera
-        camera.Follow(player, deltatime, false);
+        camera.Follow(player, deltatime);
         window.setView(camera.GetView());
         bg.Update(window.getView());
     }
