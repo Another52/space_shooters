@@ -14,9 +14,11 @@ public:
 	virtual void Update(float dt) = 0;
 	virtual void Draw(sf::RenderWindow& window) const;
 	bool Collision(Entity& other);
-	virtual void TakeDamage(int damage) { health -= damage; }
+	virtual void TakeDamage(int damage);
 	const sf::Sprite& GetSprite() const { return sprite; }
 	bool IsDead() const { return dead; }
+	void MarkDead() { dead = true; }
+	int GetDamage() const { return damage; };
 public:
 	bool active{true};
 protected:

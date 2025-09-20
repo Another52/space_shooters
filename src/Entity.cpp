@@ -1,4 +1,5 @@
 #include "Entity.hpp"
+#include <iostream>
 
 Entity::Entity(const sf::RenderWindow& window, TextureManager& texManager,
 			   const std::string& filename, const sf::IntRect& rectangle)
@@ -25,4 +26,11 @@ bool Entity::Collision(Entity& other)
 	}
 
 	return false;
+}
+
+void Entity::TakeDamage(int damage)
+{
+	health -= damage;
+	if (health <= 0)
+		MarkDead();
 }
