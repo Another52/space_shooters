@@ -1,5 +1,6 @@
 #pragma once
 
+#include "SFML/Audio.hpp"
 #include "Entity.hpp"
 #include "Bullet.hpp"
 #include <vector>
@@ -22,4 +23,5 @@ private:
 	TextureManager& texManager;
 	std::string filename;
 	sf::IntRect rectangle;
+	sf::Music shoot;
 };

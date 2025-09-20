@@ -48,6 +48,7 @@ void BulletManager::Collide(Entity& entity)
 	{
 		if (bullet->active && bullet->Collision(entity))
 		{
+			shoot.play();
 			bullet->active = false;
 			entity.TakeDamage(bullet->GetDamage());
 			bullet->MarkDead();

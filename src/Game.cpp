@@ -9,6 +9,7 @@ Game::Game()
     stars(texManager, player.GetSprite(), "background3.png", 0.8f),
     moon(texManager, player.GetSprite(), "background4.png", 2.2f),
     player(window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 16 }, { 16, 16 })),
+    playerbullets(player, window, texManager, "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 })),
     enemies(player.GetSprite(), window, texManager,
             "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
 {
@@ -63,10 +64,7 @@ void Game::pollEvents()
         {
             if (mouseButtonPressed->button == sf::Mouse::Button::Left)
             {
-                playerbullets.Add(std::make_unique<Bullet>(
-                    player, window, texManager,
-                    "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }))
-                );
+                playerbullets.Add();
             }
         }
     }
