@@ -9,7 +9,7 @@ public:
 	Camera(float zoomlevel, sf::RenderWindow& window);
 	
 	void Update(sf::Vector2u windowSize);
-	void Follow(Entity& player, float deltatime);
+	void Follow(Entity& player, float deltatime, bool lerp = true);
 	const sf::View& GetView() const;
 private:
 	float zoomLevel;
