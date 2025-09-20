@@ -37,6 +37,7 @@ private:
 private:
 	GAMESTATE gamestate{ GAMERUNNING };
 	TextureManager texManager;
+	sf::Sprite crosshair;
 	Player player;
 	Background bg;
 	Background stars;

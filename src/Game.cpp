@@ -5,6 +5,7 @@ Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
 	camera(230.f, window),
+    crosshair(texManager.GetTexture("crosshair.png")),
     bg(texManager, player.GetSprite(), "background1.png", 1.2f),
     stars(texManager, player.GetSprite(), "background3.png", 0.8f),
     moon(texManager, player.GetSprite(), "background4.png", 2.2f),
@@ -13,10 +14,13 @@ Game::Game()
     enemies(player.GetSprite(), window, texManager,
             "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
 {
-    //do stuff
 	window.setFramerateLimit(60);
     camera.Update(windowSize);
     window.setView(camera.GetView());
+    window.setMouseCursorVisible(false);
+
+    crosshair.setScale({ 0.5f, 0.5f});
+    crosshair.setColor(sf::Color(255, 0, 255, 200));
 }
 
 void Game::Run()
@@ -79,6 +83,9 @@ void Game::Update()
     if(gamestate == GAMERUNNING)
     {
         //Update entities
+        auto mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
+        std::cout << mousePos.x << " | " << mousePos.y << std::endl;
+        crosshair.setPosition(static_cast<sf::Vector2f>(mousePos));
         player.Update(deltatime);
         auto playerpos = player.GetSprite().getPosition();
         playerbullets.Update(deltatime);
@@ -103,5 +110,6 @@ void  Game::Render()
     playerbullets.Draw(window);
     player.Draw(window);
     enemies.Draw(window);
+    window.draw(crosshair);
     window.display();
 }
