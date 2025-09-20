@@ -7,6 +7,8 @@ Enemy::Enemy(const sf::Sprite& player, const sf::RenderWindow& window,
 	Entity(window, texManager, filename, rectangle),
 	player(player)
 {
+	health = 10;
+	speed = 80.f;
 	sprite.setPosition(GetOffScreenPos());
 }
 

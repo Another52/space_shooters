@@ -1,10 +1,12 @@
 #include "Player.hpp"
+#include <iostream>
 
 Player::Player(const sf::RenderWindow& window, TextureManager& texManager,
 			   const std::string& filename, const sf::IntRect& rect)
 	:
 	Entity(window, texManager, filename, rect)
 {
+	damage = 5;
 }
 
 void Player::Update(float dt)

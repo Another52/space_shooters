@@ -29,5 +29,5 @@ protected:
 	bool dead{ false };
 	int maxHealth{ 100 };
 	int health{ 100 };
-	int damage{ 5 };
+	int damage{ 1 };
 };

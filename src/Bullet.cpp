@@ -6,6 +6,8 @@ Bullet::Bullet(const Entity& obj, const sf::RenderWindow& window,
 	:
 	Entity(window, texManager, filename, rectangle)
 {
+	speed = 150.f;
+
 	damage = obj.GetDamage();
 
 	sprite.setPosition(obj.GetSprite().getPosition());
