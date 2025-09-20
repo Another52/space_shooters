@@ -2,11 +2,11 @@
 
 #include "SFML/Graphics.hpp"
 #include "Camera.hpp"
+#include "Background.hpp"
 #include "TextureManager.hpp"
 #include "Player.hpp"
-#include "Background.hpp"
-#include "Bullet.hpp"
 #include "Enemy.hpp"
+#include "BulletManager.hpp"
 #include <string>
 #include <vector>
 
@@ -31,6 +31,6 @@ private:
 	TextureManager texManager;
 	Background bg;
 	Player player;
-	std::vector<std::unique_ptr<Bullet>> playerbullets;
+	BulletManager playerbullets;
 	Enemy enemy;
 };
