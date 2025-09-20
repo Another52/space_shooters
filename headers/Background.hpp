@@ -12,6 +12,9 @@ public:
 	void Update(const sf::View& view);
 	void Draw(sf::RenderWindow& window);
 private:
+	void MoveAllSprites(sf::Vector2f offset);
+private:
+	float spriteScale{};
 	bool done = false;
 	const sf::Texture& texture;
 	const sf::Sprite& player;
