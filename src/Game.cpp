@@ -5,6 +5,8 @@ Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
 	camera(230.f, window),
+    pauseScreen(texManager.GetTexture("text\\PAUSED.png")),
+    mainmenu(texManager.GetTexture("text\\START.png")),
     crosshair(texManager.GetTexture("crosshair.png")),
     bg(texManager, player.GetSprite(), "background1.png", 1.2f),
     stars(texManager, player.GetSprite(), "background3.png", 0.8f),
@@ -18,6 +20,9 @@ Game::Game()
     camera.Update(windowSize);
     window.setView(camera.GetView());
     window.setMouseCursorVisible(false);
+
+    pauseScreen.setOrigin(pauseScreen.getLocalBounds().getCenter());
+    mainmenu.setOrigin(pauseScreen.getLocalBounds().getCenter());
 
     crosshair.setScale({ 0.5f, 0.5f});
     crosshair.setColor(sf::Color(255, 0, 255, 200));
@@ -43,9 +48,17 @@ void Game::pollEvents()
 
         //focus stuff
         if (event->is<sf::Event::FocusLost>())
-            gamestate = GAMEPAUSE;
+        {
+            if(gamestate != GAMEMAIN)
+                gamestate = GAMEPAUSE;
+        }
+        //keys
         if (const auto* keyPressed = event->getIf<sf::Event::KeyPressed>())
         {
+            if (keyPressed->scancode == sf::Keyboard::Scan::Enter)
+            {
+                gamestate = GAMERUNNING;
+            }
             if (keyPressed->scancode == sf::Keyboard::Scan::Escape)
             {
                 if (gamestate == GAMEPAUSE)
@@ -79,12 +92,20 @@ void Game::Update()
     //calculate deltatime
 	deltatime = clock.restart().asSeconds();
     pollEvents();
+    
 
+    //Pause Screen
+    auto screencenter = window.getView().getCenter();
+    pauseScreen.setPosition(screencenter);
+    mainmenu.setPosition(screencenter);
+
+    //run state
     if(gamestate == GAMERUNNING)
     {
+        //std::cout << screencenter.x << " | " << screencenter.y << std::endl;
+        
         //Update entities
         auto mousePos = window.mapPixelToCoords(sf::Mouse::getPosition(window), window.getView());
-        std::cout << mousePos.x << " | " << mousePos.y << std::endl;
         crosshair.setPosition(static_cast<sf::Vector2f>(mousePos));
         player.Update(deltatime);
         auto playerpos = player.GetSprite().getPosition();
@@ -94,22 +115,38 @@ void Game::Update()
         //Collision bullets with enemies
         enemies.Collide(playerbullets);
 
-        //Update Camera
-        camera.Follow(player, deltatime);
-        window.setView(camera.GetView());
+        //background
         bg.Update(window.getView());
+        stars.Update(window.getView());
+        moon.Update(window.getView());
     }
+    //Update Camera
+    camera.Follow(player, deltatime);
+    window.setView(camera.GetView());
+
 }
 
 void  Game::Render()
 {
-	window.clear(sf::Color(155, 155, 155));
+    window.clear(sf::Color::Black);
+
     bg.Draw(window);
     stars.Draw(window);
     moon.Draw(window);
-    playerbullets.Draw(window);
-    player.Draw(window);
-    enemies.Draw(window);
-    window.draw(crosshair);
+    if(gamestate != GAMEMAIN)
+    {
+        playerbullets.Draw(window);
+        player.Draw(window);
+        enemies.Draw(window);
+        window.draw(crosshair);
+
+        if (gamestate == GAMEPAUSE)
+            window.draw(pauseScreen);
+    }
+    else
+    {
+        window.draw(mainmenu);
+    }
+
     window.display();
 }

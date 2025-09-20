@@ -13,6 +13,7 @@
 
 enum GAMESTATE
 {
+	GAMEMAIN,
 	GAMEPAUSE,
 	GAMERUNNING,
 };
@@ -35,8 +36,10 @@ private:
 	Camera camera;
 	//Game entities and what not
 private:
-	GAMESTATE gamestate{ GAMERUNNING };
+	GAMESTATE gamestate{ GAMEMAIN };
 	TextureManager texManager;
+	sf::Sprite pauseScreen;
+	sf::Sprite mainmenu;
 	sf::Sprite crosshair;
 	Player player;
 	Background bg;
