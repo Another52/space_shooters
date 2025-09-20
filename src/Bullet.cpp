@@ -1,16 +1,18 @@
 #include "Bullet.hpp"
 #include <iostream>
 
-Bullet::Bullet(const sf::Sprite& obj, const sf::RenderWindow& window,
+Bullet::Bullet(const Entity& obj, const sf::RenderWindow& window,
 			   TextureManager& texManager, const std::string& filename, sf::IntRect& rectangle)
 	:
 	Entity(window, texManager, filename, rectangle)
 {
-	sprite.setPosition(obj.getPosition());
-	sprite.setRotation(obj.getRotation());
+	damage = obj.GetDamage();
+
+	sprite.setPosition(obj.GetSprite().getPosition());
+	sprite.setRotation(obj.GetSprite().getRotation());
 
 	auto mousePos = static_cast<sf::Vector2f>(window.mapPixelToCoords(sf::Mouse::getPosition(window)));
-	dir = (mousePos - obj.getPosition()).normalized();
+	dir = (mousePos - obj.GetSprite().getPosition()).normalized();
 }
 
 void Bullet::Update(float deltatime)
