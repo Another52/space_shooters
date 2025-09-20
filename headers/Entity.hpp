@@ -14,8 +14,9 @@ public:
 	virtual void Update(float dt) = 0;
 	virtual void Draw(sf::RenderWindow& window) const;
 	bool Collision(Entity& other);
-	virtual void TakeDamage(int damage);
+	void SetPos(sf::Vector2f pos) { sprite.setPosition(pos); }
 	const sf::Sprite& GetSprite() const { return sprite; }
+	virtual void TakeDamage(int damage);
 	int GetHealth() { return health; }
 	bool IsDead() const { return dead; }
 	void MarkDead() { dead = true; }
