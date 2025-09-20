@@ -15,6 +15,7 @@ private:
 	const sf::Sprite& player;
 	float speed = 80.f;
 	float spawnDuration{ 0.f };
+	float rotSmoothing = 1.5f;
 	sf::Vector2f currentDir;
 	int health{ 10 };
 };

@@ -18,9 +18,8 @@ void Enemy::Update(float deltatime)
 	targetDir = (targetDir.lengthSquared() > 0.f)
 		? targetDir / std::sqrt(targetDir.lengthSquared())
 		: sf::Vector2f{ 0.f, -1.f };
-	
-	float smoothing = 0.5f;
-	currentDir += (targetDir - currentDir) * smoothing * deltatime;
+
+	currentDir += (targetDir - currentDir) * rotSmoothing * deltatime;
 
 	sprite.setRotation(currentDir.angle());
 	sprite.rotate(sf::radians(PI / 2));
