@@ -16,7 +16,7 @@ file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCES})
 target_compile_features(${CMAKE_PROJECT_NAME} PRIVATE cxx_std_17)
 target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC headers/)
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SFML::Graphics)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SFML::Graphics SFML::Audio)
 
 if(TARGET SFML::Main)
     target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE SFML::Main)
