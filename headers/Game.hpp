@@ -35,10 +35,10 @@ private:
 	Camera camera;
 	//Game entities and what not
 private:
-	GAMESTATE gamestate{ GAMEPAUSE };
+	GAMESTATE gamestate{ GAMERUNNING };
 	TextureManager texManager;
-	Background bg;
 	Player player;
+	Background bg;
 	BulletManager playerbullets;
 	EnemyManager enemies;
 };

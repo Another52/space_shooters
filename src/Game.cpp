@@ -5,8 +5,8 @@ Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
 	camera(230.f, window),
+    bg(texManager, player.GetSprite(), "background1.png"),
     player(window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 16 }, { 16, 16 })),
-    bg(texManager, "background1.png"),
     enemies(player.GetSprite(), window, texManager,
             "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
 {
@@ -55,12 +55,12 @@ void Game::pollEvents()
         }
 
         //Mouse Buttons
+        if (gamestate != GAMERUNNING)
+            return;
         if (const auto* mouseButtonPressed = event->getIf<sf::Event::MouseButtonPressed>())
         {
             if (mouseButtonPressed->button == sf::Mouse::Button::Left)
             {
-                /*playerbullets.emplace_back(player.GetSprite(), window, texManager,
-                                     "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }));*/
                 playerbullets.Add(std::make_unique<Bullet>(
                     player, window, texManager,
                     "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }))
@@ -80,6 +80,7 @@ void Game::Update()
     {
         //Update entities
         player.Update(deltatime);
+        auto playerpos = player.GetSprite().getPosition();
         playerbullets.Update(deltatime);
         enemies.Update(deltatime);
 
@@ -87,8 +88,9 @@ void Game::Update()
         enemies.Collide(playerbullets);
 
         //Update Camera
-        camera.Follow(player, deltatime);
+        camera.Follow(player, deltatime, false);
         window.setView(camera.GetView());
+        bg.Update(window.getView());
     }
 }
 
