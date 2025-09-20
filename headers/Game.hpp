@@ -7,6 +7,7 @@
 #include "Player.hpp"
 #include "Enemy.hpp"
 #include "BulletManager.hpp"
+#include "EnemyManager.hpp"
 #include <string>
 #include <vector>
 
@@ -32,5 +33,5 @@ private:
 	Background bg;
 	Player player;
 	BulletManager playerbullets;
-	Enemy enemy;
+	EnemyManager enemies;
 };

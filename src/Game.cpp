@@ -7,7 +7,8 @@ Game::Game()
 	camera(230.f, window),
     player(window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 16 }, { 16, 16 })),
     bg(texManager, "background1.png"),
-    enemy(player.GetSprite(), window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({0, 0}, {16, 16}))
+    enemies(player.GetSprite(), window, texManager,
+            "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
 {
 	window.setFramerateLimit(60);
     camera.Update(windowSize);
@@ -62,10 +63,13 @@ void Game::Update()
     //Update entities
     player.Update(deltatime);
     playerbullets.Update(deltatime);
-    enemy.Update(deltatime);
+    enemies.Update(deltatime);
 
     //Collision
-    playerbullets.Collide(enemy);
+    for(auto& enemy : enemies.GetEnemies())
+    {
+        playerbullets.Collide(*enemy);
+    }
 
     //Update Camera
     camera.Follow(player, deltatime);
@@ -78,6 +82,6 @@ void  Game::Render()
     bg.Draw(window);
     playerbullets.Draw(window);
     player.Draw(window);
-    enemy.Draw(window);
+    enemies.Draw(window);
     window.display();
 }
