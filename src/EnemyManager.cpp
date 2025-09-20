@@ -36,11 +36,11 @@ void EnemyManager::Draw(sf::RenderWindow& window)
 	}
 }
 
-void EnemyManager::Collide()
+void EnemyManager::Collide(BulletManager& playerBullets)
 {
 	for (auto& enemy : enemies)
 	{
-		//enemy->Update();
+		playerBullets.Collide(*enemy);
 	}
 }
 

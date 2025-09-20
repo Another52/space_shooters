@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Enemy.hpp"
+#include "BulletManager.hpp"
 #include <vector>
 #include <memory>
 
@@ -11,9 +12,8 @@ public:
 				 TextureManager& texManager, std::string filename, sf::IntRect rectangle);
 	void Update(float deltatime);
 	void Draw(sf::RenderWindow& window);
-	void Collide();
+	void Collide(BulletManager& playerBullets);
 	void Spawn();
-	const std::vector<std::unique_ptr<Enemy>>& GetEnemies() { return enemies; }
 private:
 	std::vector<std::unique_ptr<Enemy>> enemies;
 	const sf::Sprite& player;
