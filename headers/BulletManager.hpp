@@ -2,7 +2,6 @@
 
 #include "Entity.hpp"
 #include "Bullet.hpp"
-#include "Enemy.hpp"
 #include <vector>
 #include <memory>
 #include <string>
