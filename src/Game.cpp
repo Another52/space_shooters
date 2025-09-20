@@ -95,7 +95,7 @@ void Game::Update()
 void  Game::Render()
 {
 	window.clear(sf::Color(155, 155, 155));
-    //bg.Draw(window);
+    bg.Draw(window);
     playerbullets.Draw(window);
     player.Draw(window);
     enemies.Draw(window);

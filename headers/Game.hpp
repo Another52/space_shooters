@@ -8,7 +8,6 @@
 #include "Enemy.hpp"
 #include "BulletManager.hpp"
 #include "EnemyManager.hpp"
-#include "GameState.hpp"
 #include <string>
 #include <vector>
 
