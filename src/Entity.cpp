@@ -19,7 +19,7 @@ bool Entity::Collision(Entity& other)
 {
 	const sf::Sprite& obj = other.GetSprite();
 
-	if (obj.getGlobalBounds().findIntersection(obj.getGlobalBounds()))
+	if (sprite.getGlobalBounds().findIntersection(obj.getGlobalBounds()))
 	{
 		return true;
 	}
