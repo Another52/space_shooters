@@ -25,7 +25,7 @@ void Enemy::Update(float deltatime)
 	sprite.rotate(sf::radians(PI / 2));
 	sprite.move(currentDir * speed * deltatime);
 
-	if (sprite.getLocalBounds().findIntersection(player.getLocalBounds()))
+	if (sprite.getGlobalBounds().findIntersection(player.getGlobalBounds()))
 	{
 		dead = true;
 	}
