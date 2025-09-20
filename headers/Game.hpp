@@ -8,8 +8,15 @@
 #include "Enemy.hpp"
 #include "BulletManager.hpp"
 #include "EnemyManager.hpp"
+#include "GameState.hpp"
 #include <string>
 #include <vector>
+
+enum GAMESTATE
+{
+	GAMEPAUSE,
+	GAMERUNNING,
+};
 
 class Game
 {
@@ -29,6 +36,7 @@ private:
 	Camera camera;
 	//Game entities and what not
 private:
+	GAMESTATE gamestate{ GAMEPAUSE };
 	TextureManager texManager;
 	Background bg;
 	Player player;
