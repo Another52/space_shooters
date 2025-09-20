@@ -19,8 +19,6 @@ void Camera::Update(sf::Vector2u windowSize)
         size = sf::Vector2f(zoomLevel * aspect, zoomLevel);
 
     view.setSize(size);
-    view.setCenter({ 0.f, 0.f });
-    currentCenter = sf::Vector2f(0.f, 0.f);
 }
 
 void Camera::Follow(Entity& player, float deltatime)
