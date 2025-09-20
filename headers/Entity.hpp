@@ -16,6 +16,7 @@ public:
 	bool Collision(Entity& other);
 	virtual void TakeDamage(int damage);
 	const sf::Sprite& GetSprite() const { return sprite; }
+	int GetHealth() { return health; }
 	bool IsDead() const { return dead; }
 	void MarkDead() { dead = true; }
 	int GetDamage() const { return damage; };
