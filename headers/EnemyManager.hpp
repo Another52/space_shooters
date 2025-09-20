@@ -8,7 +8,7 @@ class EnemyManager
 {
 public:
 	EnemyManager(const sf::Sprite& player, const sf::RenderWindow& window,
-				 TextureManager& texManager, const std::string& filename, sf::IntRect& rectangle);
+				 TextureManager& texManager, std::string filename, sf::IntRect rectangle);
 	void Update(float deltatime);
 	void Draw(sf::RenderWindow& window);
 	void Collide();
@@ -19,8 +19,8 @@ private:
 	const sf::Sprite& player;
 	const sf::RenderWindow& window;
 	TextureManager& texManager;
-	const std::string& filename;
-	sf::IntRect& rectangle;
+	std::string filename;
+	sf::IntRect rectangle;
 	float spawnTimer{ 0.f };
 	float spawnInterval{ 2.f };
 };

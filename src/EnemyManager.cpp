@@ -1,7 +1,7 @@
 #include "EnemyManager.hpp"
 
 EnemyManager::EnemyManager(const sf::Sprite& player, const sf::RenderWindow& window, TextureManager& texManager,
-						   const std::string& filename, sf::IntRect& rectangle)
+						   std::string filename, sf::IntRect rectangle)
 	:
 	player(player), window(window), texManager(texManager),
 	filename(filename), rectangle(rectangle)
