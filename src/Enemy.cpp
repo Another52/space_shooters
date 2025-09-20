@@ -27,7 +27,7 @@ void Enemy::Update(float deltatime)
 
 	if (sprite.getGlobalBounds().findIntersection(player.getGlobalBounds()))
 	{
-		dead = true;
+		//dead = true;
 	}
 }
 
