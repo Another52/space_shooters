@@ -2,13 +2,13 @@
 #include <iostream>
 
 Background::Background(TextureManager& texManager,
-					   const sf::Sprite& player, const std::string& filename)
+					   const sf::Sprite& player, const std::string& filename, float spriteScale)
 	:
 	texture(texManager.GetTexture(filename)),
-	player(player)
+	player(player),
+	spriteScale(spriteScale)
 {
 	sprites.reserve(9);
-	spriteScale = 1.f;
 	constexpr float offset = 1.f;
 	const sf::Vector2f scale(spriteScale, spriteScale);
 	const float spriteWidth = texture.getSize().x * scale.x;
