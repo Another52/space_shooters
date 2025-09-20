@@ -1,9 +1,21 @@
 #include "BulletManager.hpp"
 #include <iostream>
 
-void BulletManager::Add(std::unique_ptr<Bullet> bullet)
+BulletManager::BulletManager(const Entity& player, const sf::RenderWindow& window,
+							 TextureManager& texManager, std::string filename, sf::IntRect rectangle)
+	:
+	player(player),
+	window(window),
+	texManager(texManager),
+	filename(filename),
+	rectangle(rectangle),
+	shoot(RESOURCES_PATH "shoot.flac")
 {
-	bullets.push_back(std::move(bullet));
+}
+
+void BulletManager::Add()
+{
+	bullets.push_back(std::make_unique<Bullet>(player, window, texManager, filename, rectangle));
 }
 
 void BulletManager::Draw(sf::RenderWindow& window)

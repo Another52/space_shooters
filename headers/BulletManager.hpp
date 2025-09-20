@@ -9,10 +9,17 @@
 class BulletManager
 {
 public:
-	void Add(std::unique_ptr<Bullet> bullet);
+	BulletManager(const Entity& player, const sf::RenderWindow& window,
+				  TextureManager& texManager, std::string filename, sf::IntRect rectangle);
+	void Add();
 	void Update(float deltatime);
 	void Draw(sf::RenderWindow& window);
 	void Collide(Entity& entity);
 private:
 	std::vector<std::unique_ptr<Bullet>> bullets;
+	const Entity& player;
+	const sf::RenderWindow& window;
+	TextureManager& texManager;
+	std::string filename;
+	sf::IntRect rectangle;
 };
