@@ -14,6 +14,7 @@ void EnemyManager::Update(float deltatime)
 	if (spawnTimer > spawnInterval)
 	{
 		Spawn();
+		spawnTimer -= spawnInterval;
 	}
 
 	for (auto& enemy : enemies)
