@@ -29,6 +29,10 @@ void Enemy::Update(float deltatime)
 	{
 		//dead = true;
 	}
+	if (health <= 0)
+	{
+		dead = true;
+	}
 }
 
 sf::Vector2f Enemy::GetOffScreenPos()
