@@ -22,5 +22,5 @@ private:
 	std::string filename;
 	sf::IntRect rectangle;
 	float spawnTimer{ 0.f };
-	float spawnInterval{ 0.5f };
+	float spawnInterval{ 0.8f };
 };

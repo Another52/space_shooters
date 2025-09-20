@@ -39,6 +39,8 @@ private:
 	TextureManager texManager;
 	Player player;
 	Background bg;
+	Background stars;
+	Background moon;
 	BulletManager playerbullets;
 	EnemyManager enemies;
 };

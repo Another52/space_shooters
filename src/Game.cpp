@@ -5,7 +5,9 @@ Game::Game()
 	:
 	window(sf::VideoMode(windowSize), windowName),
 	camera(230.f, window),
-    bg(texManager, player.GetSprite(), "background1.png"),
+    bg(texManager, player.GetSprite(), "background1.png", 1.2f),
+    stars(texManager, player.GetSprite(), "background3.png", 0.8f),
+    moon(texManager, player.GetSprite(), "background4.png", 2.2f),
     player(window, texManager, "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 16 }, { 16, 16 })),
     enemies(player.GetSprite(), window, texManager,
             "spaceShip\\stitchedFiles\\spaceships_c.png", sf::IntRect({ 0, 0 }, { 16, 16 }))
@@ -98,6 +100,8 @@ void  Game::Render()
 {
 	window.clear(sf::Color(155, 155, 155));
     bg.Draw(window);
+    stars.Draw(window);
+    moon.Draw(window);
     playerbullets.Draw(window);
     player.Draw(window);
     enemies.Draw(window);
