@@ -65,11 +65,8 @@ void Game::Update()
     playerbullets.Update(deltatime);
     enemies.Update(deltatime);
 
-    //Collision
-    for(auto& enemy : enemies.GetEnemies())
-    {
-        playerbullets.Collide(*enemy);
-    }
+    //Collision bullets with enemies
+    enemies.Collide(playerbullets);
 
     //Update Camera
     camera.Follow(player, deltatime);
