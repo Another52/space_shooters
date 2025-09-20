@@ -46,7 +46,7 @@ void Game::pollEvents()
                 /*playerbullets.emplace_back(player.GetSprite(), window, texManager,
                                      "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }));*/
                 playerbullets.Add(std::make_unique<Bullet>(
-                    player.GetSprite(), window, texManager,
+                    player, window, texManager,
                     "spaceShip\\stitchedFiles\\projectiles_c.png", sf::IntRect({ 1, 0 }, { 2, 4 }))
                 );
             }
